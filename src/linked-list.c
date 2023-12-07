@@ -291,3 +291,36 @@ int list_replace(list *list, int oldvalue, int newvalue)
     tmp->value = newvalue;
     return 1;
 }
+
+int list_sort(list *list)
+{
+    if(list->head == NULL || list->head->next == NULL)
+        return 1;
+
+    node *tmp = list->head;
+
+    for(int i = 0; i < list->length; i++)
+    {
+        int swaped = 0;
+
+        while(tmp->next != NULL)
+        {
+            if(tmp->value > tmp->next->value)
+            {
+                int tmpvalue = tmp->value;
+                tmp->value = tmp->next->value;
+                tmp->next->value = tmpvalue;
+                swaped = 1;
+            }
+
+            tmp = tmp->next;
+        }
+
+        if(swaped == 0)
+            return 1;
+
+        tmp = list->head;
+    }
+
+    return 1;
+}
