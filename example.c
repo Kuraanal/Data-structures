@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
+#include <time.h>
 #include "src/linked-list.h"
 
 int main(void)
@@ -7,11 +9,17 @@ int main(void)
     struct list *mainList;
     mainList = init_list();
 
-    for (int i = 0; i < 5; i++)
+    srand( time( NULL ) );
+
+    for (int i = 0; i < 10; i++)
     {
-        list_pushend(mainList, i);
-    }
-    // [0, 1, 2, 3, 4, ]
+        int value = (i +1) * (rand() % 11);
+        list_pushend(mainList, value);
+    } // [x, x, x, ...]
+
+    list_print(mainList);
+
+    list_sort(mainList);
 
     list_print(mainList);
 
