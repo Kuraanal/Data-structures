@@ -143,7 +143,7 @@ int list_popend(list *list)
 
     node *tmp = list->head;
 
-    while (tmp->next !=  NULL)
+    while (tmp->next !=  list->tail)
     {
         tmp = tmp->next;
     }
