@@ -52,6 +52,8 @@ int main(void)
     else
         printf("Found node before value %d. previous Node value is: %d\n", found->next->value, found->value);
 
+    free(found);
+
     if(list_remove(mainList, 20) == 0)
         printf("Error removing 20.\n");
     else
@@ -91,5 +93,7 @@ int main(void)
 
     list_print(mainList);
 
+    list_clear(mainList);
+    free(mainList);
     return 0;
 }
