@@ -7,7 +7,10 @@ list *init_list()
     list *list = malloc(sizeof(list));
 
     if (list == NULL)
+    {
+        free(list);
         return NULL;
+    }
 
     list->head = NULL;
     list->tail = NULL;
@@ -21,7 +24,10 @@ node *create_node(int value)
     node *newnode = malloc(sizeof(node));
 
     if(newnode == NULL)
+    {
+        free(newnode);
         return NULL;
+    }
 
     newnode->value = value;
     newnode->next = NULL;
@@ -60,7 +66,7 @@ node *list_before(list *list, int value)
 {
     if( list->head == NULL)
         return NULL;
-    
+
     // if value is first return null
     if(list->head->value == value)
         return NULL;
@@ -106,7 +112,7 @@ int list_print(list *list)
 
     if (list->head != NULL)
     {
-        while (1)
+        while (tmp != NULL)
         {
             printf("%d, ", tmp->value);
 
@@ -153,6 +159,7 @@ int list_popend(list *list)
     list->tail = tmp;
 
     list->length--;
+    return 1;
 }
 
 int list_remove(list *list, int value)
@@ -168,23 +175,20 @@ int list_remove(list *list, int value)
     node *tmpremove = tmpbefore->next;
 
     if(tmpremove->next == NULL) // is tail
-    {
         list->tail = tmpbefore;
-        free(tmpremove);
-    }
     else
-    {
         tmpbefore->next = tmpremove->next;
-        free(tmpremove);
-    }
+
+    free(tmpremove);
 
     list->length--;
+    return 1;
 }
 
 int list_pushstart(list *list, int value)
 {
     node *find = list_find(list, value);
-        
+
     if(find != NULL)
         return 0;
 
@@ -209,19 +213,22 @@ int list_pushstart(list *list, int value)
 int list_pushend(list *list, int value)
 {
     node *find = list_find(list, value);
-        
+
     if(find != NULL)
-        return 0;
-
-    node *tmp = create_node(value);
-
-    if(tmp == NULL)
         return 0;
 
     if(list->head == NULL)
     {
         list_pushstart(list, value);
         return 1;
+    }
+    
+    node *tmp = create_node(value);
+
+    if(tmp == NULL)
+    {
+        free(tmp);
+        return 0;
     }
 
     list->tail->next = tmp;
@@ -234,12 +241,12 @@ int list_pushend(list *list, int value)
 
 int list_insert_after(list *list, int value, int valueBefore)
 {
-    node *find = list_find(list, value);
-        
-    if(find != NULL)
+    if(list->head == NULL)
         return 0;
 
-    if(list->head == NULL)
+    node *find = list_find(list, value);
+
+    if(find != NULL)
         return 0;
 
     if(valueBefore == list->tail->value)
@@ -256,7 +263,10 @@ int list_insert_after(list *list, int value, int valueBefore)
     node *tmpnode = create_node(value);
 
     if(tmpnode == NULL)
+    {
+        free(tmpnode);
         return 0;
+    }
 
     tmpnode->next = tmpbefore->next;
     tmpbefore->next = tmpnode;
@@ -267,12 +277,12 @@ int list_insert_after(list *list, int value, int valueBefore)
 
 int list_insert_before(list *list, int value, int valueAfter)
 {
-    node *find = list_find(list, value);
-        
-    if(find != NULL)
-        return 0;
-        
     if(list->head == NULL)
+        return 0;
+
+    node *find = list_find(list, value);
+
+    if(find != NULL)
         return 0;
 
     if(valueAfter == list->head->value)
@@ -289,7 +299,10 @@ int list_insert_before(list *list, int value, int valueAfter)
     node *tmpnode = create_node(value);
 
     if(tmpnode == NULL)
+    {
+        free(tmpnode);
         return 0;
+    }
 
     tmpnode->next = tmpAfter->next;
     tmpAfter->next = tmpnode;
