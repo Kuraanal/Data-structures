@@ -10,4 +10,4 @@ This C code provides a basic implementation of simple datastructures in C.
 
 # Stack
 
-[STACK readme](stack.md)
+[STACK readme](Stack.md)
