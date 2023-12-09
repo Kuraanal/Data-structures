@@ -1,6 +1,6 @@
-#ifndef LINKEDLIST
+#ifndef LINKEDLISTDT
 
-#define LINKEDLIST
+#define LINKEDLISTDT
 typedef struct node
 {
     int value;
