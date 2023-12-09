@@ -17,7 +17,6 @@ int main(void)
         list_pushend(mainList, value);
     } // [x, x, x, ...]
 
-
     list_print(mainList);
 
     if(list_popend(mainList))
