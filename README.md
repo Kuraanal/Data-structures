@@ -87,7 +87,3 @@ int list_sort(list *list);
 - `list_sort`: Sorts the list in ascending order based on the node values.
 
 Feel free to use and modify this linked list implementation according to your specific requirements.
-
-### TODO
-
-- Implement a way to prevent duplicates.
