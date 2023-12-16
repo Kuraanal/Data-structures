@@ -4,7 +4,7 @@
 
 list *init_list()
 {
-    list *list = malloc(sizeof(list));
+    list *list = malloc(sizeof(list) + (sizeof(node)*2));
 
     if (list == NULL)
     {
@@ -21,7 +21,7 @@ list *init_list()
 
 node *create_node(int value)
 {
-    node *newnode = malloc(sizeof(node));
+    node *newnode = malloc(sizeof(node) + sizeof(value));
 
     if(newnode == NULL)
     {
