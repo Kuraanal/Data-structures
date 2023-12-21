@@ -12,6 +12,8 @@ typedef struct node
     struct node *next;
 } node;
 ```
+
+
 The `node` structure represents a node in the linked list. It contains an integer value and a pointer to the next node in the list.
 
 ### List
@@ -23,8 +25,10 @@ typedef struct list
     int length;
 } list;
 ```
+
 The `list` structure maintains the head and tail pointers of the linked list, along with the length of the list.
 
+![Linked List](/images/Linked-List.png)
 ## Functions
 
 ### Initialization
@@ -65,6 +69,7 @@ int list_remove(list *list, int value);
 - `list_popend`: Removes the last node from the list.
 - `list_remove`: Removes the node with the specified value from the list.
 
+![Linked List - Remove functions](/images/Linked-List%20Remove.png)
 ### Insertion Operations
 ```c
 int list_pushstart(list *list, int value);
@@ -77,6 +82,7 @@ int list_insert_before(list *list, int value, int valueAfter);
 - `list_insert_after`: Inserts a new node with the given value after the node with the specified value.
 - `list_insert_before`: Inserts a new node with the given value before the node with the specified value.
 
+![Linked List - Insert Functions](/images/Link-List%20Insert.png)
 ### Modification Operations
 ```c
 int list_replace(list *list, int oldvalue, int newvalue);
