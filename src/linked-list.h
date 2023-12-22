@@ -9,8 +9,8 @@ typedef struct node
 
 typedef struct list
 {
-    struct node *head;
-    struct node *tail;
+    node *head;
+    node *tail;
     int length;
 } list;
 

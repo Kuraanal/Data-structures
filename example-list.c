@@ -4,6 +4,8 @@
 #include <time.h>
 #include "src/linked-list.h"
 
+#define NODE_NUMBER 50
+
 int main(void)
 {
     list *mainList;
@@ -11,11 +13,11 @@ int main(void)
 
     srand( time( NULL ) );
 
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < NODE_NUMBER; i++)
     {
-        int value = (i +1) * (rand() % 11);
+        int value = (i +1) * (rand() % NODE_NUMBER);
         list_pushend(mainList, value);
-    } // [x, x, x, ...]
+    }
 
     list_print(mainList);
 
@@ -65,17 +67,14 @@ int main(void)
     list_print(mainList);
 
     list_clear(mainList);
-    // []
+
 
     list_print(mainList);
-
 
     for (int i = 0; i < 5; i++)
     {
         list_pushstart(mainList, i);
     }
-    // [4, 3, 2, 1, 0, ]
-
 
     list_print(mainList);
 
@@ -91,7 +90,6 @@ int main(void)
 
     list_print(mainList);
 
-    free(found);
     list_clear(mainList);
     free(mainList);
 

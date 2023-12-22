@@ -4,13 +4,10 @@
 
 list *init_list()
 {
-    list *list = malloc(sizeof(list) + (sizeof(node)*2));
+    list *list = malloc(sizeof(*list));
 
     if (list == NULL)
-    {
-        free(list);
         return NULL;
-    }
 
     list->head = NULL;
     list->tail = NULL;
@@ -66,8 +63,7 @@ node *list_before(list *list, int value)
 {
     if( list->head == NULL)
         return NULL;
-    
-    // if value is first return null
+
     if(list->head->value == value)
         return NULL;
 
@@ -205,6 +201,7 @@ int list_pushstart(list *list, int value)
         list->head = tmp;
         list->tail = tmp;
 
+        list->length++;
         return 1;
     }
 
@@ -327,18 +324,15 @@ int list_replace(list *list, int oldvalue, int newvalue)
 
 int list_sort(list *list)
 {
-    if(list->head == NULL || list->head->next == NULL)
-        return 1;
-
     node *tmp = list->head;
 
     for(int i = 0; i < list->length; i++)
     {
         int swaped = 0;
 
-        while(tmp->next != NULL)
+        while(tmp != NULL)
         {
-            if(tmp->value > tmp->next->value)
+            if(tmp->next != NULL && tmp->value > tmp->next->value)
             {
                 int tmpvalue = tmp->value;
                 tmp->value = tmp->next->value;
@@ -355,5 +349,5 @@ int list_sort(list *list)
         tmp = list->head;
     }
 
-    return 1;
+    return 0;
 }
