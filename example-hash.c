@@ -11,10 +11,9 @@ int main(void)
 {
     string_node* hash_table[HASH_TABLE_SIZE];
 
-
     init_table(hash_table);
 
-    FILE* dict = fopen("dictionary-5000.txt", "r");
+    FILE* dict = fopen("dictionary-500.txt", "r");
 
     if(dict == NULL)
         return 1;
@@ -32,7 +31,6 @@ int main(void)
     fclose(dict);
 
     string_node* tmpnode= NULL;
-
 
     printf("searching \'from\'\n");
     tmpnode = hash_find(hash_table, "from");

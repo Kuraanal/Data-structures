@@ -78,6 +78,13 @@ int main(void)
 
     list_print(mainList);
 
+    if(list_remove(mainList, 4) == 0)
+        printf("Error removing 4.\n");
+    else
+        printf("Node with value 4 removed\n");
+        
+    list_print(mainList);
+
     if(list_insert_after(mainList, 50, 3))
         printf("Added 50 after value 3\n");
     else
